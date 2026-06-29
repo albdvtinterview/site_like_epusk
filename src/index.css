@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Golos Text', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #172033;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 115px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #fff;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(238, 107, 53, 0.28);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-[1400px] px-5 sm:px-7 lg:px-10;
+  }
+
+  .section-space {
+    @apply py-20 md:py-24 lg:py-28;
+  }
+
+  .section-title {
+    @apply text-3xl font-black leading-[1.08] tracking-[-0.035em] text-ink sm:text-4xl lg:text-5xl;
+  }
+
+  .eyebrow {
+    @apply mb-4 text-xs font-black uppercase tracking-[0.2em] text-orange;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center gap-2 rounded-xl bg-orange px-6 py-4 text-sm font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#dc5725] hover:shadow-lg hover:shadow-orange/20;
+  }
+
+  .button-secondary-dark {
+    @apply inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-4 text-sm font-black text-white transition hover:border-white/40 hover:bg-white/10;
+  }
+
+  .nav-link {
+    @apply relative py-2 text-sm font-bold text-ink transition hover:text-orange;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-orange transition-all duration-200;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .text-link {
+    @apply inline-flex items-center gap-2 text-sm font-black text-navy transition hover:text-orange;
+  }
+
+  .catalog-card {
+    @apply overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-orange/35 hover:shadow-card md:p-6;
+  }
+
+  .service-card {
+    @apply flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-3 transition duration-300 hover:-translate-y-1 hover:shadow-card;
+  }
+
+  .project-card {
+    @apply flex flex-col rounded-3xl border border-slate-200 bg-white p-3 pb-6 transition duration-300 hover:-translate-y-1 hover:shadow-card;
+  }
+
+  .tag {
+    @apply rounded-full bg-mist px-3 py-1.5 text-xs font-bold text-slate-600;
+  }
+
+  .image-placeholder {
+    @apply relative isolate grid w-full place-items-center overflow-hidden rounded-[inherit] border border-dashed border-slate-300 bg-[#e9edf3] text-center text-slate-500;
+  }
+
+  .image-placeholder::before {
+    content: '';
+    @apply absolute inset-0 -z-10;
+    background: radial-gradient(circle at 75% 22%, rgba(238, 107, 53, 0.14), transparent 26%),
+      linear-gradient(135deg, rgba(20, 40, 77, 0.04), rgba(20, 40, 77, 0.11));
+  }
+
+  .image-placeholder__grid {
+    @apply absolute inset-0 -z-10 opacity-40;
+    background-image: linear-gradient(rgba(20, 40, 77, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 40, 77, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(to bottom right, #000, transparent 78%);
+  }
+
+  .image-placeholder__label {
+    @apply flex max-w-[82%] flex-col items-center gap-2 px-4 py-6 text-xs font-black leading-5;
+  }
+
+  .image-placeholder__label small {
+    @apply block font-medium text-slate-400;
+  }
+
+  .field-label {
+    @apply block text-sm font-black text-ink;
+  }
+
+  .field {
+    @apply mt-2 block w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm font-medium text-ink outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-orange focus:ring-4 focus:ring-orange/10;
+  }
+
+  .contact-link {
+    @apply flex items-center gap-3 text-sm font-bold text-white/80 transition hover:text-orange;
+  }
+
+  .footer-title {
+    @apply mb-5 text-sm font-black text-white;
+  }
+
+  .footer-links {
+    @apply flex flex-col items-start gap-3 text-sm text-white/50;
+  }
+
+  .footer-links a,
+  .footer-links span {
+    @apply inline-flex items-center gap-2 transition;
+  }
+
+  .footer-links a:hover {
+    @apply text-orange;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
