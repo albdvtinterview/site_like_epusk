@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: energopusk
+      POSTGRES_USER: energopusk
+      POSTGRES_PASSWORD: energopusk
+    volumes:
+      - energopusk_pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U energopusk -d energopusk"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://energopusk:energopusk@db:5432/energopusk
+      DB_SSL: "false"
+      ADMIN_TOKEN: ${ADMIN_TOKEN:?Set ADMIN_TOKEN before starting compose}
+      PORT: 3001
+    ports:
+      - "3001:3001"
+
+volumes:
+  energopusk_pgdata:
