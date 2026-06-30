@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { catalog as fallbackCatalog } from '../data/content'
 import { catalogApi } from '../lib/api'
@@ -6,6 +5,7 @@ import { useUiStore } from '../store/useUiStore'
 import { ImagePlaceholder } from './ImagePlaceholder'
 
 const number = new Intl.NumberFormat('ru-RU')
+const catalogApiEnabled = import.meta.env.VITE_CATALOG_API_ENABLED === 'true'
 
 export function CatalogSection() {
   const [categories, setCategories] = useState(fallbackCatalog)
@@ -14,6 +14,8 @@ export function CatalogSection() {
   const search = useUiStore((state) => state.catalogSearch).trim().toLocaleLowerCase('ru')
 
   useEffect(() => {
+    if (!catalogApiEnabled) return undefined
+
     let active = true
     catalogApi.categories()
       .then((rows) => {
@@ -42,12 +44,9 @@ export function CatalogSection() {
   return (
     <section id="catalog" className="pb-12 pt-5 md:pb-16 md:pt-8">
       <div className="container-shell">
-        <div className="mb-7 flex items-end justify-between gap-5">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[28px]">Популярные категории</h2>
-            <span className="sr-only">Источник каталога: {source === 'database' ? 'PostgreSQL' : 'локальные данные'}</span>
-          </div>
-          <a href="/admin" className="hidden items-center gap-2 text-sm font-bold text-slate-500 transition hover:text-orange md:inline-flex">Управление каталогом <ArrowRight size={16} /></a>
+        <div className="mb-7">
+          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[28px]">Популярные категории</h2>
+          <span className="sr-only">Источник каталога: {source === 'database' ? 'PostgreSQL' : 'локальные данные'}</span>
         </div>
 
         {visibleCategories.length ? (

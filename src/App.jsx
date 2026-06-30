@@ -1,4 +1,3 @@
-import { AdminApp } from './admin/AdminApp'
 import { Advantages } from './components/Advantages'
 import { CatalogSection } from './components/CatalogSection'
 import { CookieBanner } from './components/CookieBanner'
@@ -10,8 +9,6 @@ import { ProjectsSection } from './components/ProjectsSection'
 import { ServicesSection } from './components/ServicesSection'
 
 export default function App() {
-  if (window.location.pathname.startsWith('/admin')) return <AdminApp />
-
   return (
     <>
       <Header />

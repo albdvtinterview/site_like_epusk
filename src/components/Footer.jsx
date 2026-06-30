@@ -20,7 +20,7 @@ export function Footer() {
         <div>
           <h3 className="footer-title">Компания</h3>
           <div className="footer-links">
-            <a href="#footer">О компании</a><a href="mailto:zapros@epusk.ru">Контакты</a><a href="/admin">Управление каталогом</a>
+            <a href="#footer">О компании</a><a href="mailto:zapros@epusk.ru">Контакты</a>
           </div>
         </div>
         <div>
