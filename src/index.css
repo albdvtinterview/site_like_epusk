@@ -107,6 +107,33 @@ textarea:focus-visible {
     @apply rounded-full bg-mist px-3 py-1.5 text-xs font-bold text-slate-600;
   }
 
+  .category-strip,
+  .service-strip,
+  .project-strip {
+    @apply grid snap-x snap-mandatory gap-3 overflow-x-auto;
+    grid-auto-flow: column;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd1db transparent;
+  }
+
+  .category-strip {
+    grid-auto-columns: minmax(205px, 1fr);
+  }
+
+  .service-strip {
+    grid-auto-columns: minmax(240px, 1fr);
+  }
+
+  .project-strip {
+    grid-auto-columns: minmax(230px, 1fr);
+  }
+
+  .category-strip > *,
+  .service-strip > *,
+  .project-strip > * {
+    scroll-snap-align: start;
+  }
+
   .image-placeholder {
     @apply relative isolate grid w-full place-items-center overflow-hidden rounded-[inherit] border border-dashed border-slate-300 bg-[#e9edf3] text-center text-slate-500;
   }
@@ -161,6 +188,17 @@ textarea:focus-visible {
 
   .footer-links a:hover {
     @apply text-orange;
+  }
+}
+
+@media (max-width: 639px) {
+  .category-strip {
+    grid-auto-columns: 76vw;
+  }
+
+  .service-strip,
+  .project-strip {
+    grid-auto-columns: 82vw;
   }
 }
 

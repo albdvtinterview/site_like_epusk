@@ -1,7 +1,6 @@
-import { AboutAndProcess } from './components/AboutAndProcess'
+import { AdminApp } from './admin/AdminApp'
 import { Advantages } from './components/Advantages'
 import { CatalogSection } from './components/CatalogSection'
-import { ContactSection } from './components/ContactSection'
 import { CookieBanner } from './components/CookieBanner'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
@@ -11,6 +10,8 @@ import { ProjectsSection } from './components/ProjectsSection'
 import { ServicesSection } from './components/ServicesSection'
 
 export default function App() {
+  if (window.location.pathname.startsWith('/admin')) return <AdminApp />
+
   return (
     <>
       <Header />
@@ -20,8 +21,6 @@ export default function App() {
         <Advantages />
         <ServicesSection />
         <ProjectsSection />
-        <AboutAndProcess />
-        <ContactSection />
       </main>
       <Footer />
       <Modal />

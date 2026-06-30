@@ -1,55 +1,77 @@
 import { ArrowRight } from 'lucide-react'
-import { catalog } from '../data/content'
+import { useEffect, useMemo, useState } from 'react'
+import { catalog as fallbackCatalog } from '../data/content'
+import { catalogApi } from '../lib/api'
 import { useUiStore } from '../store/useUiStore'
 import { ImagePlaceholder } from './ImagePlaceholder'
-import { SectionHeading } from './SectionHeading'
+
+const number = new Intl.NumberFormat('ru-RU')
 
 export function CatalogSection() {
+  const [categories, setCategories] = useState(fallbackCatalog)
+  const [source, setSource] = useState('local')
   const openModal = useUiStore((state) => state.openModal)
+  const search = useUiStore((state) => state.catalogSearch).trim().toLocaleLowerCase('ru')
+
+  useEffect(() => {
+    let active = true
+    catalogApi.categories()
+      .then((rows) => {
+        if (!active || !Array.isArray(rows) || !rows.length) return
+        const merged = rows.map((row) => {
+          const fallback = fallbackCatalog.find((item) => item.slug === row.slug) || {}
+          return {
+            ...fallback,
+            ...row,
+            title: row.name,
+            short: row.description,
+            slot: row.imageLabel,
+          }
+        })
+        setCategories(merged)
+        setSource('database')
+      })
+      .catch(() => setSource('local'))
+    return () => { active = false }
+  }, [])
+
+  const visibleCategories = useMemo(() => categories.filter((item) => (
+    !search || `${item.title} ${item.short}`.toLocaleLowerCase('ru').includes(search)
+  )), [categories, search])
 
   return (
-    <section id="catalog" className="section-space bg-white">
+    <section id="catalog" className="pb-12 pt-5 md:pb-16 md:pt-8">
       <div className="container-shell">
-        <SectionHeading
-          eyebrow="Каталог"
-          title="Оборудование для промышленного привода"
-          text="Собрали ключевые направления без перегруженного интернет-магазина. Откройте карточку — внутри назначение и параметры для подбора."
-          action="Получить подбор"
-          onAction={() => openModal({ type: 'request', title: 'Получить подбор оборудования' })}
-        />
+        <div className="mb-7 flex items-end justify-between gap-5">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[28px]">Популярные категории</h2>
+            <span className="sr-only">Источник каталога: {source === 'database' ? 'PostgreSQL' : 'локальные данные'}</span>
+          </div>
+          <a href="/admin" className="hidden items-center gap-2 text-sm font-bold text-slate-500 transition hover:text-orange md:inline-flex">Управление каталогом <ArrowRight size={16} /></a>
+        </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {catalog.map((item, index) => {
-            const Icon = item.icon
-            return (
-              <article key={item.title} className={`catalog-card ${index === 0 ? 'lg:col-span-2' : ''}`}>
+        {visibleCategories.length ? (
+          <div className="category-strip pb-3">
+            {visibleCategories.map((item) => (
+              <article key={item.slug} className="min-h-[315px] overflow-hidden rounded-xl bg-[#f7f7fb]">
                 <button
                   type="button"
-                  className="group flex h-full w-full flex-col text-left"
+                  className="group flex h-full w-full flex-col p-5 text-left"
                   onClick={() => openModal({ type: 'detail', section: 'Каталог', item })}
                   aria-label={`Подробнее: ${item.title}`}
                 >
-                  <div className="mb-5 flex items-start justify-between gap-5">
-                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-navy text-white">
-                      <Icon size={22} />
-                    </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 transition group-hover:border-orange group-hover:bg-orange group-hover:text-white">
-                      <ArrowRight size={17} />
-                    </span>
-                  </div>
-                  <h3 className="max-w-md text-xl font-black tracking-tight text-ink">{item.title}</h3>
-                  <p className="mt-2 max-w-lg text-sm leading-6 text-slate-500">{item.short}</p>
-                  <div className="mt-5 w-full overflow-hidden rounded-2xl">
-                    <ImagePlaceholder label={item.slot} ratio={index === 0 ? 'aspect-[16/7]' : 'aspect-[16/8]'} compact />
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {item.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
+                  <h3 className="min-h-12 text-[15px] font-black leading-5 text-ink">{item.title}</h3>
+                  <p className="mt-1 text-xs text-slate-500">{number.format(item.productCount || 0)} товаров</p>
+                  <div className="mt-auto w-full pt-5 transition duration-300 group-hover:-translate-y-1">
+                    <ImagePlaceholder label={item.slot} ratio="aspect-[4/3]" compact />
                   </div>
                 </button>
               </article>
-            )
-          })}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-xl bg-[#f7f7fb] p-8 text-center text-sm text-slate-500">По вашему запросу категорий не найдено.</div>
+        )}
       </div>
     </section>
   )

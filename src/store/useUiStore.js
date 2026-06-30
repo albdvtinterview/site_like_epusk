@@ -6,8 +6,10 @@ export const useUiStore = create(
     (set) => ({
       mobileMenuOpen: false,
       modal: null,
+      catalogSearch: '',
       cookieAccepted: false,
       setMobileMenuOpen: (mobileMenuOpen) => set({ mobileMenuOpen }),
+      setCatalogSearch: (catalogSearch) => set({ catalogSearch }),
       openModal: (modal) => set({ modal, mobileMenuOpen: false }),
       closeModal: () => set({ modal: null }),
       acceptCookies: () => set({ cookieAccepted: true }),

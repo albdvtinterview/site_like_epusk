@@ -3,7 +3,7 @@ import { Logo } from './Logo'
 
 export function Footer() {
   return (
-    <footer className="bg-[#0c1931] py-12 text-white">
+    <footer id="footer" className="bg-[#0c1931] py-12 text-white">
       <div className="container-shell grid gap-10 border-b border-white/10 pb-10 md:grid-cols-2 lg:grid-cols-[1.4fr_.8fr_.8fr_1.1fr]">
         <div>
           <Logo light />
@@ -20,7 +20,7 @@ export function Footer() {
         <div>
           <h3 className="footer-title">Компания</h3>
           <div className="footer-links">
-            <a href="#about">О компании</a><a href="#contacts">Контакты</a><a href="#contacts">Реквизиты</a>
+            <a href="#footer">О компании</a><a href="mailto:zapros@epusk.ru">Контакты</a><a href="/admin">Управление каталогом</a>
           </div>
         </div>
         <div>

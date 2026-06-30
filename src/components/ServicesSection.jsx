@@ -1,47 +1,31 @@
-import { ArrowUpRight, Check } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { services } from '../data/content'
 import { useUiStore } from '../store/useUiStore'
 import { ImagePlaceholder } from './ImagePlaceholder'
-import { SectionHeading } from './SectionHeading'
 
 export function ServicesSection() {
   const openModal = useUiStore((state) => state.openModal)
 
   return (
-    <section id="services" className="section-space bg-mist">
+    <section id="services" className="py-14 md:py-20">
       <div className="container-shell">
-        <SectionHeading
-          eyebrow="Инжиниринг"
-          title="Услуги автоматизации"
-          text="Подключаемся на любом этапе — от технического задания и обследования до сборки, программирования и запуска."
-        />
-        <div className="grid gap-5 md:grid-cols-2">
-          {services.map((item) => {
-            const Icon = item.icon
-            return (
-              <article key={item.title} className="service-card group">
-                <div className="overflow-hidden rounded-2xl">
-                  <ImagePlaceholder label={item.slot} ratio="aspect-[16/8]" compact />
-                </div>
-                <div className="flex flex-1 flex-col p-6 md:p-7">
-                  <div className="flex items-start justify-between gap-5">
-                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-orange/10 text-orange"><Icon size={23} /></span>
-                    <ArrowUpRight className="text-slate-300 transition group-hover:text-orange" />
-                  </div>
-                  <h3 className="mt-6 text-2xl font-black tracking-tight text-ink">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-500">{item.text}</p>
-                  <p className="mt-5 flex items-center gap-2 text-sm font-bold text-navy"><Check size={17} className="text-orange" />{item.result}</p>
-                  <button
-                    type="button"
-                    onClick={() => openModal({ type: 'detail', section: 'Услуга', item })}
-                    className="mt-7 self-start text-link"
-                  >
-                    Обсудить задачу <ArrowUpRight size={17} />
-                  </button>
-                </div>
-              </article>
-            )
-          })}
+        <div className="mb-7 flex items-center justify-between">
+          <h2 className="text-2xl font-bold tracking-tight text-ink md:text-[28px]">Услуги автоматизации</h2>
+          <ArrowRight size={21} />
+        </div>
+        <div className="service-strip pb-3">
+          {services.map((item) => (
+            <article key={item.title} className="flex min-h-[410px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-3">
+              <ImagePlaceholder label={item.slot} ratio="aspect-[4/3]" compact />
+              <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
+                <h3 className="text-base font-black leading-6 text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-5 text-slate-500">{item.text}</p>
+                <button type="button" onClick={() => openModal({ type: 'detail', section: 'Услуга', item })} className="mt-auto w-fit rounded-md bg-orange px-4 py-2.5 text-sm font-black text-white">
+                  Заказать услугу
+                </button>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
