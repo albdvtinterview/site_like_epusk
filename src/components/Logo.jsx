@@ -1,9 +1,11 @@
+import { assetUrl } from '../lib/assetUrl'
+
 export function Logo({ light = false }) {
   if (!light) {
     return (
       <a href="#top" className="group shrink-0" aria-label="Нова Энерго — на главную">
         <img
-          src="/images/brand/nova-energo-logo.png"
+          src={assetUrl('images/brand/nova-energo-logo.png')}
           alt="Нова Энерго"
           width="2172"
           height="724"
@@ -16,7 +18,7 @@ export function Logo({ light = false }) {
   return (
     <a href="#top" className="group flex items-center gap-3" aria-label="Нова Энерго — на главную">
       <img
-        src="/images/brand/nova-energo-mark.png"
+        src={assetUrl('images/brand/nova-energo-mark.png')}
         alt=""
         width="1254"
         height="1254"

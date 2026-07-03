@@ -31,6 +31,7 @@ openssl rand -hex 32
 - `FRONTEND_PORT` — порт Vite в режиме разработки;
 - `PREVIEW_PORT` — порт локальной production-проверки;
 - `VITE_CATALOG_API_ENABLED` — `true` для локальной БД, `false` для статической витрины;
+- `VITE_BASE_PATH` — базовый URL сборки: `/` для REG.RU и `/site_like_epusk/` для GitHub Pages;
 - `NGROK_AUTHTOKEN` — секрет агента ngrok;
 - `NGROK_DOMAIN` — необязательный закреплённый адрес ngrok.
 
@@ -66,3 +67,9 @@ openssl rand -hex 32
 Готовый файл появится в `release/nova-energo-reg-ru.zip`. Загрузите его в корневой каталог сайта и распакуйте там. В архив не попадают исходники, `.env`, `server`, `node_modules` или Docker-конфиги.
 
 Витрина использует подготовленные WebP-изображения из `public/images`.
+
+## GitHub Pages
+
+Workflow `.github/workflows/deploy-pages.yml` автоматически собирает статическую витрину с базовым путём `/site_like_epusk/` и публикует только папку `dist`.
+
+В настройках репозитория выберите `Settings → Pages → Build and deployment → Source → GitHub Actions`. После push в `main` сайт будет доступен по адресу `https://albdvtinterview.github.io/site_like_epusk/`.

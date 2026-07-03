@@ -12,5 +12,5 @@ if [[ -f .env ]]; then
   set +a
 fi
 
-VITE_CATALOG_API_ENABLED=false npm run build
+VITE_BASE_PATH=/ VITE_CATALOG_API_ENABLED=false npm run build
 exec npm run preview -- --host 127.0.0.1 --port "${PREVIEW_PORT:-4173}"

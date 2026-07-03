@@ -8,7 +8,7 @@ ARCHIVE_PATH="$RELEASE_DIR/nova-energo-reg-ru.zip"
 cd "$ROOT_DIR"
 [[ -d node_modules ]] || npm ci
 
-VITE_CATALOG_API_ENABLED=false npm run build
+VITE_BASE_PATH=/ VITE_CATALOG_API_ENABLED=false npm run build
 mkdir -p "$RELEASE_DIR"
 
 cd "$ROOT_DIR/dist"

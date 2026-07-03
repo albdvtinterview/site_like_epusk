@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { assetUrl } from '../lib/assetUrl'
 import { useUiStore } from '../store/useUiStore'
 import { ContentImage } from './ContentImage'
 
@@ -24,7 +25,7 @@ export function Hero() {
           <div className="relative min-h-56 p-3 md:min-h-full md:p-0">
             <div className="absolute -left-10 top-0 hidden h-full w-28 -skew-x-12 bg-orange md:block" />
             <ContentImage
-              src="/images/hero/industrial-automation.webp"
+              src={assetUrl('images/hero/industrial-automation.webp')}
               label="Промышленная автоматизация"
               ratio="h-full min-h-56 rounded-xl md:rounded-none"
               loading="eager"
