@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { catalog as fallbackCatalog } from '../data/content'
 import { catalogApi } from '../lib/api'
 import { useUiStore } from '../store/useUiStore'
-import { ImagePlaceholder } from './ImagePlaceholder'
+import { ContentImage } from './ContentImage'
 
 const number = new Intl.NumberFormat('ru-RU')
 const catalogApiEnabled = import.meta.env.VITE_CATALOG_API_ENABLED === 'true'
@@ -62,7 +62,7 @@ export function CatalogSection() {
                   <h3 className="min-h-12 text-[15px] font-black leading-5 text-ink">{item.title}</h3>
                   <p className="mt-1 text-xs text-slate-500">{number.format(item.productCount || 0)} товаров</p>
                   <div className="mt-auto w-full pt-5 transition duration-300 group-hover:-translate-y-1">
-                    <ImagePlaceholder label={item.slot} ratio="aspect-[4/3]" compact />
+                    <ContentImage src={item.image} label={item.slot} ratio="aspect-[4/3]" compact />
                   </div>
                 </button>
               </article>

@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import { useUiStore } from '../store/useUiStore'
-import { ImagePlaceholder } from './ImagePlaceholder'
+import { ContentImage } from './ContentImage'
 
 export function Hero() {
   const openModal = useUiStore((state) => state.openModal)
@@ -23,7 +23,13 @@ export function Hero() {
           </div>
           <div className="relative min-h-56 p-3 md:min-h-full md:p-0">
             <div className="absolute -left-10 top-0 hidden h-full w-28 -skew-x-12 bg-orange md:block" />
-            <ImagePlaceholder label="Баннер промышленной автоматизации, 1600×600" ratio="h-full min-h-56 rounded-xl md:rounded-none" compact />
+            <ContentImage
+              src="/images/hero/industrial-automation.webp"
+              label="Промышленная автоматизация"
+              ratio="h-full min-h-56 rounded-xl md:rounded-none"
+              loading="eager"
+              fetchPriority="high"
+            />
           </div>
         </div>
       </div>

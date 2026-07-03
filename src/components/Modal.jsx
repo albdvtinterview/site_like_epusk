@@ -1,7 +1,7 @@
 import { ArrowRight, CheckCircle2, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useUiStore } from '../store/useUiStore'
-import { ImagePlaceholder } from './ImagePlaceholder'
+import { ContentImage } from './ContentImage'
 
 export function Modal() {
   const modal = useUiStore((state) => state.modal)
@@ -54,7 +54,7 @@ export function Modal() {
             <>
               <p className="mt-4 text-base leading-7 text-slate-600">{item.description || item.text}</p>
               <div className="mt-6 overflow-hidden rounded-2xl">
-                <ImagePlaceholder label={item.slot} ratio="aspect-[16/8]" />
+                <ContentImage src={item.image} label={item.slot} ratio="aspect-[16/8]" />
               </div>
               {item.tags && (
                 <div className="mt-5 flex flex-wrap gap-2">{item.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}</div>

@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { services } from '../data/content'
 import { useUiStore } from '../store/useUiStore'
-import { ImagePlaceholder } from './ImagePlaceholder'
+import { ContentImage } from './ContentImage'
 
 export function ServicesSection() {
   const openModal = useUiStore((state) => state.openModal)
@@ -16,7 +16,7 @@ export function ServicesSection() {
         <div className="service-strip pb-3">
           {services.map((item) => (
             <article key={item.title} className="flex min-h-[410px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-3">
-              <ImagePlaceholder label={item.slot} ratio="aspect-[4/3]" compact />
+              <ContentImage src={item.image} label={item.slot} ratio="aspect-[4/3]" compact />
               <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
                 <h3 className="text-base font-black leading-6 text-ink">{item.title}</h3>
                 <p className="mt-2 text-sm leading-5 text-slate-500">{item.text}</p>

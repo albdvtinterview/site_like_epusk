@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { projects } from '../data/content'
 import { useUiStore } from '../store/useUiStore'
-import { ImagePlaceholder } from './ImagePlaceholder'
+import { ContentImage } from './ContentImage'
 
 export function ProjectsSection() {
   const openModal = useUiStore((state) => state.openModal)
@@ -16,7 +16,7 @@ export function ProjectsSection() {
         <div className="project-strip pb-3">
           {projects.map((item) => (
             <article key={item.title} className="group min-w-0 cursor-pointer" onClick={() => openModal({ type: 'detail', section: 'Проект', item })}>
-              <ImagePlaceholder label={item.slot} ratio="aspect-[4/3] rounded-xl" compact />
+              <ContentImage src={item.image} label={item.slot} ratio="aspect-[4/3] rounded-xl" compact />
               <p className="mt-4 text-xs text-slate-400">Проекты</p>
               <h3 className="mt-1 text-lg font-bold leading-6 text-ink transition group-hover:text-orange">{item.title}</h3>
             </article>

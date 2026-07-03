@@ -26,6 +26,7 @@ export const catalog = [
     tags: ['0,4–630 кВт', '220 / 380 / 690 В'],
     icon: Activity,
     slot: 'Фото частотного преобразователя',
+    image: '/images/categories/frequency-converter.webp',
   },
   {
     slug: 'ustroystva-plavnogo-puska',
@@ -37,6 +38,7 @@ export const catalog = [
     tags: ['Компактные', 'С байпасом'],
     icon: Gauge,
     slot: 'Фото устройства плавного пуска',
+    image: '/images/categories/soft-starter.webp',
   },
   {
     slug: 'elektrodvigateli',
@@ -48,6 +50,7 @@ export const catalog = [
     tags: ['АИР / АИС', 'IE2–IE4'],
     icon: Cog,
     slot: 'Фото электродвигателя',
+    image: '/images/categories/electric-motor.webp',
   },
   {
     slug: 'promyshlennaya-avtomatika',
@@ -59,6 +62,7 @@ export const catalog = [
     tags: ['ПЛК и HMI', 'Датчики'],
     icon: PanelsTopLeft,
     slot: 'Фото промышленной автоматики',
+    image: '/images/categories/industrial-automation.webp',
   },
   {
     slug: 'motor-reduktory',
@@ -70,6 +74,7 @@ export const catalog = [
     tags: ['До 50 000 Н·м', 'Разные исполнения'],
     icon: Settings2,
     slot: 'Фото мотор-редуктора',
+    image: '/images/categories/gear-motor.webp',
   },
   {
     slug: 'elektropitanie',
@@ -81,6 +86,7 @@ export const catalog = [
     tags: ['ИБП', '24 / 48 / 220 В'],
     icon: BatteryCharging,
     slot: 'Фото оборудования электропитания',
+    image: '/images/categories/power-supply-equipment.webp',
   },
   {
     slug: 'tali',
@@ -92,6 +98,7 @@ export const catalog = [
     tags: ['0,5–20 т', 'Цепные и канатные'],
     icon: Construction,
     slot: 'Фото промышленной тали',
+    image: '/images/categories/industrial-hoist.webp',
   },
 ]
 
@@ -102,6 +109,7 @@ export const services = [
     result: 'Мониторинг и управление 24/7',
     icon: Factory,
     slot: 'Фото диспетчеризации объекта',
+    image: '/images/services/object-dispatching.webp',
   },
   {
     title: 'Автоматизация систем управления',
@@ -109,6 +117,7 @@ export const services = [
     result: 'Проект, ПО и документация',
     icon: PanelsTopLeft,
     slot: 'Фото автоматизированного производства',
+    image: '/images/services/automated-production.webp',
   },
   {
     title: 'Техническое обследование на объекте',
@@ -116,6 +125,7 @@ export const services = [
     result: 'Отчёт и точная калькуляция',
     icon: Wrench,
     slot: 'Фото технического обследования',
+    image: '/images/services/technical-survey.webp',
   },
   {
     title: 'Производство шкафов управления и НКУ',
@@ -123,6 +133,7 @@ export const services = [
     result: 'Сборка, проверка и маркировка',
     icon: Boxes,
     slot: 'Фото шкафа управления',
+    image: '/images/services/control-cabinet.webp',
   },
   {
     title: 'Проектирование систем автоматики',
@@ -130,6 +141,7 @@ export const services = [
     result: 'Решение, готовое к реализации',
     icon: Cable,
     slot: 'Фото инженерного проектирования',
+    image: '/images/services/engineering-design.webp',
   },
 ]
 
@@ -140,6 +152,7 @@ export const projects = [
     text: 'Автоматическое поддержание давления с резервированием приводов.',
     stats: ['−18% энергозатрат', '4 агрегата'],
     slot: 'Фото станции второго подъёма',
+    image: '/images/projects/second-lift-station.webp',
   },
   {
     title: 'Управление станцией водоподготовки',
@@ -147,6 +160,7 @@ export const projects = [
     text: 'Единый алгоритм работы оборудования водозаборного узла.',
     stats: ['Диспетчеризация', 'Автоматический режим'],
     slot: 'Фото станции водоподготовки',
+    image: '/images/projects/water-treatment-station.webp',
   },
   {
     title: 'Автоматизация производственной линии',
@@ -154,6 +168,7 @@ export const projects = [
     text: 'Синхронизация приводов, контроль зон и единый операторский интерфейс.',
     stats: ['12 приводов', '+24% производительности'],
     slot: 'Фото производственной линии',
+    image: '/images/projects/production-line.webp',
   },
   {
     title: 'Модернизация сельского ВЗУ',
@@ -161,6 +176,7 @@ export const projects = [
     text: 'Обновление силовой части и автоматики без длительной остановки объекта.',
     stats: ['Работа без оператора', 'Резервирование'],
     slot: 'Фото модернизированного ВЗУ',
+    image: '/images/projects/modernized-vzu.webp',
   },
   {
     title: 'Система вентиляции цеха',
@@ -168,6 +184,7 @@ export const projects = [
     text: 'Частотное регулирование с поддержанием давления и расписанием.',
     stats: ['Окупаемость 14 мес.', '75 кВт'],
     slot: 'Фото системы вентиляции',
+    image: '/images/projects/ventilation-system.webp',
   },
 ]
 

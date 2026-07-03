@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RELEASE_DIR="$ROOT_DIR/release"
-ARCHIVE_PATH="$RELEASE_DIR/energopusk-reg-ru.zip"
+ARCHIVE_PATH="$RELEASE_DIR/nova-energo-reg-ru.zip"
 
 cd "$ROOT_DIR"
 [[ -d node_modules ]] || npm ci

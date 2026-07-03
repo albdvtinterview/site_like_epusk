@@ -33,7 +33,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container-shell flex flex-col gap-3 pt-7 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-        <span>© 2006–2026 ЭНЕРГОПУСК</span>
+        <span>© 2006–2026 НОВА ЭНЕРГО</span>
         <span>Информация на сайте не является публичной офертой</span>
       </div>
     </footer>

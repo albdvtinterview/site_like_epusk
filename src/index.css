@@ -138,6 +138,14 @@ textarea:focus-visible {
     @apply relative isolate grid w-full place-items-center overflow-hidden rounded-[inherit] border border-dashed border-slate-300 bg-[#e9edf3] text-center text-slate-500;
   }
 
+  .content-image {
+    @apply relative w-full overflow-hidden rounded-[inherit] bg-[#e9edf3];
+  }
+
+  .content-image img {
+    @apply h-full w-full object-cover;
+  }
+
   .image-placeholder::before {
     content: '';
     @apply absolute inset-0 -z-10;
