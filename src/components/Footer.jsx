@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { MapPin, Phone } from 'lucide-react'
 import { Logo } from './Logo'
 
 export function Footer() {
@@ -14,20 +14,19 @@ export function Footer() {
         <div>
           <h3 className="footer-title">Разделы</h3>
           <div className="footer-links">
-            <a href="#catalog">Каталог</a><a href="#services">Услуги</a><a href="#projects">Проекты</a>
+            <a href="#/catalog">Каталог</a><a href="#services">Услуги</a><a href="#projects">Проекты</a>
           </div>
         </div>
         <div>
           <h3 className="footer-title">Компания</h3>
           <div className="footer-links">
-            <a href="#footer">О компании</a><a href="mailto:zapros@epusk.ru">Контакты</a>
+            <a href="#footer">О компании</a><a href="#footer">Контакты</a>
           </div>
         </div>
         <div>
           <h3 className="footer-title">Контакты</h3>
           <div className="footer-links">
             <a href="tel:+79117471010"><Phone size={15} /> +7 911 747-10-10</a>
-            <a href="mailto:zapros@epusk.ru"><Mail size={15} /> zapros@epusk.ru</a>
             <span><MapPin size={15} /> Санкт-Петербург</span>
           </div>
         </div>

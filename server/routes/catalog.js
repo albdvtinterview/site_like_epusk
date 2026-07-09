@@ -29,6 +29,9 @@ catalogRouter.get('/products', async (req, res, next) => {
   try {
     const category = typeof req.query.category === 'string' ? req.query.category : null
     const search = typeof req.query.search === 'string' ? req.query.search.trim() : ''
+    const availability = typeof req.query.availability === 'string' ? req.query.availability.trim() : ''
+    const priceMode = typeof req.query.priceMode === 'string' ? req.query.priceMode : 'all'
+    const sort = typeof req.query.sort === 'string' ? req.query.sort : 'price-asc'
     const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1)
     const pageSize = Math.min(60, Math.max(1, Number.parseInt(req.query.pageSize, 10) || 24))
     const offset = (page - 1) * pageSize
@@ -45,6 +48,24 @@ catalogRouter.get('/products', async (req, res, next) => {
       where += ` AND (p.name ILIKE $${values.length} OR p.sku ILIKE $${values.length} OR p.short_description ILIKE $${values.length})`
     }
 
+    if (availability) {
+      values.push(availability)
+      where += ` AND p.availability = $${values.length}`
+    }
+
+    if (priceMode === 'priced') {
+      where += ' AND p.price > 0'
+    }
+
+    if (priceMode === 'request') {
+      where += ' AND (p.price IS NULL OR p.price <= 0)'
+    }
+
+    const orderBy = {
+      'price-desc': '(p.price IS NULL OR p.price <= 0), p.price DESC NULLS LAST, p.name ASC',
+      name: 'p.name ASC',
+    }[sort] || '(p.price IS NULL OR p.price <= 0), p.price ASC NULLS LAST, p.name ASC'
+
     const countResult = await pool.query(`
       SELECT COUNT(*)::int AS total
       FROM products p
@@ -60,7 +81,7 @@ catalogRouter.get('/products', async (req, res, next) => {
       FROM products p
       JOIN categories c ON c.id = p.category_id
       ${where}
-      ORDER BY (p.price IS NULL OR p.price <= 0), p.price ASC NULLS LAST, p.name ASC
+      ORDER BY ${orderBy}
       LIMIT $${values.length - 1} OFFSET $${values.length}
     `, values)
 

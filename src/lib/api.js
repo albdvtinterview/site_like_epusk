@@ -13,10 +13,13 @@ async function request(path, options = {}) {
 
 export const catalogApi = {
   categories: () => request('/api/categories'),
-  products: ({ category, search, page = 1, pageSize = 24 } = {}) => {
+  products: ({ category, search, availability, priceMode, sort, page = 1, pageSize = 24 } = {}) => {
     const params = new URLSearchParams()
     if (category) params.set('category', category)
     if (search) params.set('search', search)
+    if (availability) params.set('availability', availability)
+    if (priceMode) params.set('priceMode', priceMode)
+    if (sort) params.set('sort', sort)
     params.set('page', String(page))
     params.set('pageSize', String(pageSize))
     return request(`/api/products?${params.toString()}`)
