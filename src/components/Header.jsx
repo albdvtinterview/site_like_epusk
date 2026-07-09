@@ -1,7 +1,6 @@
 import {
   Activity,
   BatteryCharging,
-  ChevronDown,
   Cog,
   Construction,
   Grid3X3,
@@ -45,12 +44,11 @@ export function Header() {
       <div className="hidden border-b border-slate-100 lg:block">
         <div className="container-shell flex h-10 items-center justify-between text-xs font-semibold text-slate-600">
           <nav className="flex items-center gap-6" aria-label="Дополнительная навигация">
-            <span className="inline-flex items-center gap-1.5 font-bold text-ink">Москва <ChevronDown size={13} /></span>
+            <span className="inline-flex items-center gap-1.5 font-bold text-ink">Санкт-Петербург</span>
             {topNav.map(([label, href]) => <a key={label} className="transition hover:text-orange" href={href}>{label}</a>)}
           </nav>
           <div className="flex items-center gap-5">
-            <a href="tel:+74957752455" className="font-black text-ink">+7 (495) 775-24-55</a>
-            <button type="button" onClick={() => openModal({ type: 'request', title: 'Заказать звонок' })} className="text-orange">Заказать звонок</button>
+            <a href="tel:+79117471010" className="font-black text-ink">+7 911 747-10-10</a>
             <a href="mailto:zapros@epusk.ru" className="font-bold text-ink">zapros@epusk.ru</a>
           </div>
         </div>
@@ -58,7 +56,7 @@ export function Header() {
 
       <div className="container-shell flex h-[82px] items-center gap-4 lg:gap-5">
         <Logo />
-        <a href="#catalog" className="ml-auto hidden h-12 items-center gap-3 rounded-lg bg-[#50545c] px-5 text-sm font-black text-white lg:inline-flex">
+        <a href="#catalog" className="ml-auto hidden h-12 items-center gap-3 rounded-lg bg-navy px-5 text-sm font-black text-white lg:inline-flex">
           <Grid3X3 size={18} /> Каталог
         </a>
         <label className="relative hidden min-w-0 flex-1 lg:block">
@@ -73,7 +71,7 @@ export function Header() {
           <Search size={21} className="absolute right-4 top-1/2 -translate-y-1/2 text-ink" />
         </label>
         <div className="hidden shrink-0 items-center gap-5 xl:flex">
-          <a href="tel:+74957752455" className="flex items-center gap-2 text-sm font-black text-ink"><Phone size={18} /> Позвонить</a>
+          <a href="tel:+79117471010" className="flex items-center gap-2 text-sm font-black text-ink"><Phone size={18} /> Позвонить</a>
           <button type="button" onClick={() => openModal({ type: 'request', title: 'Быстрый запрос' })} className="rounded-lg border border-orange px-5 py-3 text-sm font-black text-orange transition hover:bg-orange hover:text-white">Быстрый запрос</button>
         </div>
         <button
@@ -108,7 +106,7 @@ export function Header() {
             ))}
           </nav>
           <div className="mt-5 flex items-center justify-between gap-3">
-            <a href="tel:+74957752455" className="inline-flex items-center gap-2 text-sm font-black"><Phone size={17} />+7 (495) 775-24-55</a>
+            <a href="tel:+79117471010" className="inline-flex items-center gap-2 text-sm font-black"><Phone size={17} />+7 911 747-10-10</a>
             <a href="mailto:zapros@epusk.ru" aria-label="Написать на почту"><Mail size={19} /></a>
           </div>
         </div>

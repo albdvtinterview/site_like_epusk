@@ -125,7 +125,7 @@ export function AdminApp() {
       <main className="grid min-h-screen place-items-center bg-[#f4f5f8] p-5">
         <form onSubmit={login} className="w-full max-w-md rounded-2xl bg-white p-7 shadow-card">
           <a href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-bold text-slate-500"><ArrowLeft size={17} /> На сайт</a>
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-orange">НОВА ЭНЕРГО</p>
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-orange">НоваЭнерго</p>
           <h1 className="mt-3 text-3xl font-black text-ink">Управление каталогом</h1>
           <p className="mt-3 text-sm leading-6 text-slate-500">Введите значение переменной <code>ADMIN_TOKEN</code>. Токен хранится только до закрытия вкладки.</p>
           <label className="field-label mt-7">Токен администратора<input className="field" type="password" value={tokenInput} onChange={(event) => setTokenInput(event.target.value)} required autoFocus /></label>

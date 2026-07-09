@@ -5,7 +5,7 @@ import { requireAdmin } from '../middleware/adminAuth.js'
 
 const productSchema = z.object({
   categoryId: z.coerce.number().int().positive(),
-  name: z.string().trim().min(2).max(220),
+  name: z.string().trim().min(2).max(500),
   sku: z.string().trim().min(2).max(120),
   shortDescription: z.string().trim().max(2000).default(''),
   imageUrl: z.union([z.literal(''), z.url()]).default(''),

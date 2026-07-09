@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#172033',
-        navy: '#14284d',
-        orange: '#ee6b35',
-        mist: '#f3f5f8',
+        ink: '#16181d',
+        navy: '#005a9f',
+        orange: '#05b9e8',
+        mist: '#f1f8fb',
       },
       boxShadow: {
-        card: '0 18px 50px rgba(20, 40, 77, 0.08)',
+        card: '0 18px 50px rgba(0, 90, 159, 0.1)',
       },
     },
   },

@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section id="top" className="bg-white py-6 md:py-8">
       <div className="container-shell">
-        <div className="relative grid min-h-[270px] overflow-hidden rounded-2xl bg-[#162b52] text-white md:grid-cols-[1.2fr_.8fr]">
+        <div className="relative grid min-h-[270px] overflow-hidden rounded-2xl bg-[#063b70] text-white md:grid-cols-[1.2fr_.8fr]">
           <div className="relative z-10 flex flex-col justify-center px-7 py-10 md:px-12 lg:px-16">
             <span className="mb-4 text-xs font-black uppercase tracking-[0.18em] text-orange">Промышленная автоматизация</span>
             <h1 className="max-w-3xl text-3xl font-black leading-[1.08] tracking-[-0.025em] md:text-4xl lg:text-[44px]">

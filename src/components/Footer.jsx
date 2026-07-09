@@ -3,7 +3,7 @@ import { Logo } from './Logo'
 
 export function Footer() {
   return (
-    <footer id="footer" className="bg-[#0c1931] py-12 text-white">
+    <footer id="footer" className="bg-[#071b2f] py-12 text-white">
       <div className="container-shell grid gap-10 border-b border-white/10 pb-10 md:grid-cols-2 lg:grid-cols-[1.4fr_.8fr_.8fr_1.1fr]">
         <div>
           <Logo light />
@@ -26,14 +26,14 @@ export function Footer() {
         <div>
           <h3 className="footer-title">Контакты</h3>
           <div className="footer-links">
-            <a href="tel:+74957752455"><Phone size={15} /> +7 (495) 775-24-55</a>
+            <a href="tel:+79117471010"><Phone size={15} /> +7 911 747-10-10</a>
             <a href="mailto:zapros@epusk.ru"><Mail size={15} /> zapros@epusk.ru</a>
-            <span><MapPin size={15} /> Москва</span>
+            <span><MapPin size={15} /> Санкт-Петербург</span>
           </div>
         </div>
       </div>
       <div className="container-shell flex flex-col gap-3 pt-7 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-        <span>© 2006–2026 НОВА ЭНЕРГО</span>
+        <span>© 2016–2026 НоваЭнерго</span>
         <span>Информация на сайте не является публичной офертой</span>
       </div>
     </footer>

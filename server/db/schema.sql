@@ -14,31 +14,43 @@ CREATE TABLE IF NOT EXISTS categories (
 CREATE TABLE IF NOT EXISTS products (
   id BIGSERIAL PRIMARY KEY,
   category_id INTEGER NOT NULL REFERENCES categories(id) ON DELETE RESTRICT,
-  name VARCHAR(220) NOT NULL,
+  name VARCHAR(500) NOT NULL,
   sku VARCHAR(120) NOT NULL UNIQUE,
   short_description TEXT NOT NULL DEFAULT '',
   image_url TEXT NOT NULL DEFAULT '',
+  price NUMERIC(12,2) CHECK (price IS NULL OR price >= 0),
+  source_price NUMERIC(12,2) CHECK (source_price IS NULL OR source_price >= 0),
+  availability VARCHAR(80) NOT NULL DEFAULT '',
+  import_key VARCHAR(160),
   is_active BOOLEAN NOT NULL DEFAULT TRUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+ALTER TABLE products ADD COLUMN IF NOT EXISTS price NUMERIC(12,2) CHECK (price IS NULL OR price >= 0);
+ALTER TABLE products ADD COLUMN IF NOT EXISTS source_price NUMERIC(12,2) CHECK (source_price IS NULL OR source_price >= 0);
+ALTER TABLE products ADD COLUMN IF NOT EXISTS availability VARCHAR(80) NOT NULL DEFAULT '';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS import_key VARCHAR(160);
+ALTER TABLE products ALTER COLUMN name TYPE VARCHAR(500);
+
 CREATE INDEX IF NOT EXISTS products_category_id_idx ON products(category_id);
 CREATE INDEX IF NOT EXISTS products_is_active_idx ON products(is_active);
+CREATE UNIQUE INDEX IF NOT EXISTS products_import_key_uidx ON products(import_key) WHERE import_key IS NOT NULL;
 
 INSERT INTO categories (slug, name, description, image_label, base_product_count, sort_order)
 VALUES
-  ('chastotnye-preobrazovateli', 'Частотные преобразователи', 'Точное управление скоростью и моментом электродвигателя.', 'Фото частотного преобразователя', 11127, 10),
-  ('ustroystva-plavnogo-puska', 'Устройства плавного пуска', 'Мягкий пуск оборудования без перегрузок и гидроударов.', 'Фото устройства плавного пуска', 1877, 20),
-  ('elektrodvigateli', 'Электродвигатели', 'Надёжные двигатели для общепромышленных задач.', 'Фото электродвигателя', 6396, 30),
-  ('promyshlennaya-avtomatika', 'Промышленная автоматика', 'Контроллеры, датчики и компоненты управления.', 'Фото промышленной автоматики', 2878, 40),
-  ('motor-reduktory', 'Мотор-редукторы', 'Готовые приводные решения с нужным моментом.', 'Фото мотор-редуктора', 3297, 50),
-  ('elektropitanie', 'Электропитание', 'Стабильное питание для ответственного оборудования.', 'Фото оборудования электропитания', 859, 60),
-  ('tali', 'Тали', 'Подъёмное оборудование для цехов и складов.', 'Фото промышленной тали', 82, 70)
+  ('chastotnye-preobrazovateli', 'Частотные преобразователи', 'Точное управление скоростью и моментом электродвигателя.', 'Фото частотного преобразователя', 11128, 10),
+  ('ustroystva-plavnogo-puska', 'Устройства плавного пуска', 'Мягкий пуск оборудования без перегрузок и гидроударов.', 'Фото устройства плавного пуска', 1878, 20),
+  ('elektrodvigateli', 'Электродвигатели', 'Надёжные двигатели для общепромышленных задач.', 'Фото электродвигателя', 6397, 30),
+  ('promyshlennaya-avtomatika', 'Промышленная автоматика', 'Контроллеры, датчики и компоненты управления.', 'Фото промышленной автоматики', 2879, 40),
+  ('motor-reduktory', 'Мотор-редукторы', 'Готовые приводные решения с нужным моментом.', 'Фото мотор-редуктора', 3298, 50),
+  ('elektropitanie', 'Электропитание', 'Стабильное питание для ответственного оборудования.', 'Фото оборудования электропитания', 860, 60),
+  ('tali', 'Тали', 'Подъёмное оборудование для цехов и складов.', 'Фото промышленной тали', 83, 70)
 ON CONFLICT (slug) DO UPDATE SET
   name = EXCLUDED.name,
   description = EXCLUDED.description,
   image_label = EXCLUDED.image_label,
+  base_product_count = EXCLUDED.base_product_count,
   sort_order = EXCLUDED.sort_order,
   updated_at = NOW();
 
